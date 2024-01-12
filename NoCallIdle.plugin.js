@@ -5,7 +5,11 @@
  * @author Kaydonbob03
  * @website https://github.com/Kaydonbob03/NoCallIdle_BD_Plugin/
  * @source https://github.com/Kaydonbob03/NoCallIdle_BD_Plugin
+ * @invite Jx3TjNS
+ * @donate https://www.paypal.me/kaydonbob03
+ * @updateUrl 
  */
+
 
 const {
     flux: { intercept, dispatcher }
