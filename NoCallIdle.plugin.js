@@ -9,22 +9,37 @@
  * @updateUrl https://github.com/Kaydonbob03/NoCallIdle_BD_Plugin/blob/main/NoCallIdle.plugin.js
  */
 
-const {
-    flux: { intercept, dispatcher }
-} = shelter;
+module.exports = class NoCallIdle {
+    constructor() {
+        this.cancelPatch = null;
+    }
 
-const dispatchTypes = ["EMBEDDED_ACTIVITY_DISCONNECT", "VOICE_STATE_UPDATES"];
+    load() {
+        // Called when the plugin is loaded
+    }
 
-const onUnload = intercept((payload) => {
-    if (dispatchTypes.includes(payload?.type)) {
-        // delete handlers that start the call idle timeout
-        const actionHandlers = dispatcher?._subscriptions?.[payload.type];
-        for (const handler of actionHandlers) {
-            if (handler.toString().includes("idleTimeout.start(")) {
-                actionHandlers.delete(handler);
-            }
+    start() {
+        // Called when the plugin is started
+        this.patchVoiceModule();
+    }
+
+    stop() {
+        // Called when the plugin is stopped
+        if (this.cancelPatch) {
+            this.cancelPatch();
+            this.cancelPatch = null;
         }
     }
-});
 
-module.exports = onUnload;
+    patchVoiceModule() {
+        const voiceModule = BdApi.findModuleByProps("startCallIdleTimer");
+        if (!voiceModule) return;
+
+        this.cancelPatch = BdApi.Patcher.instead("NoCallIdle", voiceModule, "startCallIdleTimer", (thisObject, args, originalFunction) => {
+            // You can modify or skip the call to originalFunction based on your needs
+            // For example, to prevent the idle timer from starting, you can simply not call the original function
+            console.log("Prevented call idle timer from starting.");
+        });
+    }
+};
+
