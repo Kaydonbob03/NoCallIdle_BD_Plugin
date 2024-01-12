@@ -4,7 +4,7 @@
  * @description Prevents getting kicked from empty calls after 3 minutes.
  * @author Kaydonbob03
  * @website https://github.com/Kaydonbob03/NoCallIdle_BD_Plugin/
- * @source <URL_TO_YOUR_SOURCE_CODE>
+ * @source https://github.com/Kaydonbob03/NoCallIdle_BD_Plugin/blob/main/NoCallIdle.plugin.js
  */
 
 const {
