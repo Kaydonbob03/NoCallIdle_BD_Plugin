@@ -7,9 +7,8 @@
  * @source https://github.com/Kaydonbob03/NoCallIdle_BD_Plugin
  * @invite Jx3TjNS
  * @donate https://www.paypal.me/kaydonbob03
- * @updateUrl 
+ * @updateUrl https://github.com/Kaydonbob03/NoCallIdle_BD_Plugin/blob/main/NoCallIdle.plugin.js
  */
-
 
 const {
     flux: { intercept, dispatcher }
