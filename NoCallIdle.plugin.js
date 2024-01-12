@@ -13,7 +13,7 @@ const {
 
 const dispatchTypes = ["EMBEDDED_ACTIVITY_DISCONNECT", "VOICE_STATE_UPDATES"];
 
-export const onUnload = intercept((payload) => {
+const onUnload = intercept((payload) => {
     if (dispatchTypes.includes(payload?.type)) {
         // delete handlers that start the call idle timeout
         const actionHandlers = dispatcher?._subscriptions?.[payload.type];
@@ -24,3 +24,5 @@ export const onUnload = intercept((payload) => {
         }
     }
 });
+
+module.exports = onUnload;
